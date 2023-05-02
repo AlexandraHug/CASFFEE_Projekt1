@@ -1,3 +1,22 @@
 * {
     box-sizing: border-box;
 }
+
+body{max-width:2000px;padding:1em;font-family:Helvetica,Arial,sans-serif;}
+section,main,aside,header,footer{border:1px solid lightgray;padding:.5em;margin-bottom:1em;}
+div{padding:.5em;margin-bottom:1em;}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+  button {
+    background-color: #FFBF00; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
