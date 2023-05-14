@@ -12,56 +12,58 @@
 
 
   <h1>Todo App Alexandra Hug </h1>
-  <div>
-    <button>
-      Create New ToDo
-    </button>
-    <button>
-      Dark Theme
-    </button>
-    <button>
-      Background Color
-    </button>
+
+  <div class = "mainButtons">
+    <button id="create-todo" type="button">Neues ToDo</button>
+    <button id="theme-button" type="button">Theme</button>
   </div>
-  <div>
-    <button>
-      Sort by Name
-    </button>
-    <button>
-      Sort by Due Date
-    </button>
-    <button>
-      Sort by Creation Date
-    </button>
-    <button>
-      Sort by Importance
-    </button>
-    <button>
-      Filter Open
-    </button>
-    <button>
-      Filter Done
-    </button>
+  <div class="listManipulation">
+    <button id="sort-name" type="button">Name</button>
+    <button id="sort-date" type="button">Stichtag</button>
+    <button id="sort-creationdate" type="button">Erstellungsdatum</button>
+    <button id="sort-importance" type="button">Wichtigkeit</button>
+    <button id="filter-open" type="button">Öffne Filter</button>
+    <button id="filter-done" type="button">Nach Erledigt filtern</button>
   </div>
 
   <main>
-    <table>
-      <tr>
-        <th>Stichtag</th>
-        <th>Beschreib</th>
-        <th>Priorität</th>
-      </tr>
-      <tr>
-        <td>January</td>
-        <td>Todo1</td>
-        <td>1</td>
-      </tr>
-      <tr>
-        <td>January</td>
-        <td>Todo2</td>
-        <td>2</td>
-      </tr>
-    </table>
+    <div class = todoList>
+      <div class = todoListTitle>
+        <div class = duedate>
+          Stichtag
+        </div>
+        <div class = description>
+          Beschreibung
+        </div>
+        <div class = priority>
+          Priorität
+        </div>
+        <div class = state>
+          Status
+        </div>
+      </div>
+      <div class = todo>
+        <div class = duedate>
+          morgen
+        </div>
+        <div class = description>
+          Teller waschen
+        </div>
+        <div class = priority>
+          1
+        </div>
+        <div class = state>
+          erledigt
+        </div>
+        <div class = edit>
+          <button id="edit-todo" type="button">Editieren</button>
+        </div>
+      </div>
+
+    </div>
+
+    
+
   </main>
 
   <footer>

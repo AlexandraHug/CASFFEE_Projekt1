@@ -2,21 +2,86 @@
     box-sizing: border-box;
 }
 
-body{max-width:2000px;padding:1em;font-family:Helvetica,Arial,sans-serif;}
-section,main,aside,header,footer{border:1px solid lightgray;padding:.5em;margin-bottom:1em;}
-div{padding:.5em;margin-bottom:1em;}
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-  }
+:root {
+  --background: white;
+  --color: #222;
+}
 
-  button {
-    background-color: #FFBF00; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-  }
+.dark-theme {
+  --background: #222;
+  --color: white;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  background: var(--background);
+  color: var(--color);
+  display:flex;
+  flex-direction: column;
+}
+h1 {
+  font-size: 20px;
+  border-bottom: 1px solid #000;
+}
+
+button {
+  background-color: #FFBF00; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius:8px;
+}
+
+
+
+.mainButtons{
+  flex: 1 0 10%;
+  display: flex;
+  justify-content:space-between;
+  margin-bottom: 1rem;
+}
+
+.listManipulation{
+  flex: 1 0 10%;
+  display:flex;
+  justify-content:space-between;
+  margin-bottom: 1rem;
+}
+
+.todoList{
+  flex: 1 0 10%;
+  display:flex;
+  justify-content: flex-start;
+  flex-direction:column;
+  margin-bottom: 1rem;
+  text-align:start;
+}
+
+.todoListTitle{
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr 1fr 1fr;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #000;
+  font-weight: bold;
+}
+
+.todo{
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr 1fr 1fr;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #000;
+}
+
+footer{
+  flex: 0 0 5%;
+  margin-bottom: 1rem;
+}
+
+  
+
