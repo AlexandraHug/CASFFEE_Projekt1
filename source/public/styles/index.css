@@ -12,6 +12,7 @@
   --color: white;
 }
 
+
 body {
   font-family: Roboto, sans-serif;
   background: var(--background);
@@ -34,6 +35,7 @@ button {
   display: inline-block;
   font-size: 16px;
   border-radius:8px;
+  cursor: pointer;
 }
 
 
@@ -52,6 +54,14 @@ button {
   margin-bottom: 1rem;
 }
 
+.listSort{
+  justify-content:start
+}
+
+.listFilter{
+  justify-content:end
+}
+
 .todoList{
   flex: 1 0 10%;
   display:flex;
@@ -61,18 +71,9 @@ button {
   text-align:start;
 }
 
-.todoListTitle{
-  display: grid;
-  grid-template-columns: 1fr 4fr 1fr 1fr 1fr;
-  align-items: center;
-  padding: 1rem;
-  border-bottom: 1px solid #000;
-  font-weight: bold;
-}
-
 .todo{
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
   align-items: center;
   padding: 1rem;
   border-bottom: 1px solid #000;
@@ -83,5 +84,55 @@ footer{
   margin-bottom: 1rem;
 }
 
-  
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background); /* Black background with opacity*/
+  /*cursor: pointer; /* Add a pointer on hover */
+}
 
+
+#overlay-content{
+  margin-right: 20vw;
+  margin-left: 20vw;
+}
+
+#form-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+label {
+  flex: 0 0 20%;
+}
+
+textarea,
+input,
+select {
+  flex: 0 0 75%;
+  margin-bottom: 5px;
+}
+
+#state-checkbox{
+  flex: 0 0 100%;
+  margin-left: 20%;
+}
+
+input[type=checkbox]{
+  flex: 0 0 auto;
+}
+
+textarea {
+  height: 150px;
+}
+
+.Overlay-Buttons{
+  display:flex;
+  justify-content:space-between;
+}

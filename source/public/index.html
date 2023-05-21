@@ -18,57 +18,60 @@
     <button id="theme-button" type="button">Theme</button>
   </div>
   <div class="listManipulation">
-    <button id="sort-name" type="button">Name</button>
-    <button id="sort-date" type="button">Stichtag</button>
-    <button id="sort-creationdate" type="button">Erstellungsdatum</button>
-    <button id="sort-importance" type="button">Wichtigkeit</button>
-    <button id="filter-open" type="button">Öffne Filter</button>
-    <button id="filter-done" type="button">Nach Erledigt filtern</button>
+    <div class="listSort">    
+      <button id="sort-name" type="button">Name</button>
+      <button id="sort-date" type="button">Stichtag</button>
+      <button id="sort-creationdate" type="button">Erstellungsdatum</button>
+      <button id="sort-importance" type="button">Wichtigkeit</button></div>
+    <div class="listFilter">
+      <button id="filter-done" type="button">Nach Erledigt filtern</button>
+    </div>
   </div>
 
   <main>
-    <div class = todoList>
-      <div class = todoListTitle>
-        <div class = duedate>
+    <div class = "todoList">
+      <div class = "todo">
+        <h2 class = "duedate">
           Stichtag
-        </div>
-        <div class = description>
+        </h2>
+        <h2 class = "description">
           Beschreibung
-        </div>
-        <div class = priority>
+        </h2>
+        <h2 class = "priority">
           Priorität
-        </div>
-        <div class = state>
+        </h2>
+        <h2 class = "state">
           Status
-        </div>
+        </h2>
       </div>
-      <div class = todo>
-        <div class = duedate>
-          morgen
-        </div>
-        <div class = description>
-          Teller waschen
-        </div>
-        <div class = priority>
-          1
-        </div>
-        <div class = state>
-          erledigt
-        </div>
-        <div class = edit>
-          <button id="edit-todo" type="button">Editieren</button>
-        </div>
-      </div>
-
     </div>
+    <lu id="Todos" class="todoList">
+      //Todo Einträge
+    </lu>
 
-    
+    <div id="overlay">
+      <div id="overlay-content">
+        <h1>Todo editieren </h1>
+        <form id="form" action="./index.html" action="POST">   
+          <div id="form-content"></div>
+          <div class="Overlay-Buttons">
+            <button class="overlay-send" data-overlay-id = "create" type="submit">Send</button>  
+            <button id="overlay-close" type="button">Close</button> 
+          </div>
+        </form>
+
+      </div>
+    </div> <!--this is the input overlay-->
 
   </main>
 
   <footer>
     &copy Alexandra Hug  
   </footer>
+  <script type="module">
+    import index from "./scripts/index.js";
 
+    index.initApp();
+  </script>
 </body>
 </html>
