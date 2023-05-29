@@ -4,7 +4,13 @@
   <meta charset="UTF-8">
   <title>ToDo App</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js" integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
-  <script src="scripts/index.js" type="module"></script>
+
+  <script src="scripts/services/find-todo.js" defer></script>
+  <script src="scripts/services/find-todo-index.js" defer></script>
+  <script src="scripts/services/sort-todos.js" defer></script>
+  <script src="scripts/services/filter-todos.js" defer></script>
+
+  <script src="scripts/index.js" defer></script>
 
   <link rel="stylesheet" href="styles/index.css">
 </head>
@@ -19,12 +25,13 @@
   </div>
   <div class="listManipulation">
     <div class="listSort">    
-      <button id="sort-name" type="button">Name</button>
       <button id="sort-date" type="button">Stichtag</button>
-      <button id="sort-creationdate" type="button">Erstellungsdatum</button>
-      <button id="sort-importance" type="button">Wichtigkeit</button></div>
+      <button id="sort-description" type="button">Beschreibung</button>
+      <button id="sort-priority" type="button">Priorität</button>
+      <button id="sort-state" type="button">Status</button>
+    </div>
     <div class="listFilter">
-      <button id="filter-done" type="button">Nach Erledigt filtern</button>
+      <button id="filter-done" type="button" data-filtered=0 >Nach Erledigt filtern</button>
     </div>
   </div>
 
@@ -68,10 +75,5 @@
   <footer>
     &copy Alexandra Hug  
   </footer>
-  <script type="module">
-    import index from "./scripts/index.js";
-
-    index.initApp();
-  </script>
 </body>
 </html>
