@@ -1,3 +1,9 @@
+import FilterTodos  from './Services/filter-todos.js';
+import SortTodos  from './Services/sort-todos.js';
+import findTodo  from './Services/find-todo.js';
+import findTodoIndex  from './Services/find-todo-index.js';
+import toggleValue  from './Services/toggle-string.js';
+
 const TodosFirstList = [
   {id: 1, duedate: "2027-05-08", description: 'putzen', priority: 1, state: "erledigt"},
   {id: 2, duedate: "2027-05-09", description: 'aufräumen', priority: 4, state: "erledigt"},
@@ -23,16 +29,22 @@ const OverlayClose = document.getElementById("overlay-close");
 OverlayClose.addEventListener("click", () => {off();})
 
 function initApp () {
-
   const songsDivElement = document.querySelector("#Todos");
-  // const Todos = JSON.parse(localStorage.getItem('Todos') === undefined ? TodosFirstList : localStorage.getItem('Todos'));
   let Todos = JSON.parse(localStorage.getItem('Todos') || "[]");
   if (Todos.length === 0)
     {Todos = TodosFirstList;}
   localStorage.setItem('Todos', JSON.stringify(Todos));
 
   function createTodosHTML(list) {
-    return list.map(Todo =>
+    const SortFunction = document.querySelector(".listSort");
+    const Sortkey = SortFunction.dataset.sortFunction;
+    const direction = SortFunction.dataset.sortDirection;
+    const SortedList = SortTodos(list, Sortkey, direction);
+    const FilterFunction = document.querySelector(".listFilter");
+    const Filterkey =  FilterFunction.dataset.filterFunction;
+    const filterby = FilterFunction.dataset.filterString;
+    const FilteredList = FilterTodos(SortedList, Filterkey, filterby);
+    return FilteredList.map(Todo =>
       `<li class = "todo">
           <p class = "duedate">
           ${String(new Date(Todo.duedate).getUTCDate()).padStart(2,'0')}.${String(new Date(Todo.duedate).getMonth()+1).padStart(2,'0')}.${new Date(Todo.duedate).getUTCFullYear()}
@@ -167,41 +179,42 @@ function initApp () {
     renderTodos(Todos);
   });  
 
+  const SortFunction = document.querySelector(".listSort");
+  const FilterFunction = document.querySelector(".listFilter");
   const SortByDescription = document.getElementById("sort-description");
   SortByDescription.addEventListener("click", () => {
-    const SortedTodos = SortTodos(Todos, "description");
-    renderTodos(SortedTodos);
+    SortFunction.dataset.sortDirection = (SortFunction.dataset.sortFunction === "description" ? toggleValue(SortFunction.dataset.sortDirection, "up", "down") : "down");
+    SortFunction.dataset.sortFunction = "description";
+
+    renderTodos(Todos);
   });
 
   const SortByPriority = document.getElementById("sort-priority");
   SortByPriority.addEventListener("click", () => {
-    const SortedTodos = SortTodos(Todos, "priority");
-    renderTodos(SortedTodos);
+    SortFunction.dataset.sortDirection = (SortFunction.dataset.sortFunction === "priority" ? toggleValue(SortFunction.dataset.sortDirection, "up", "down") : "down");
+    SortFunction.dataset.sortFunction = "priority";
+    renderTodos(Todos);
   });
 
   const SortByState = document.getElementById("sort-state");
   SortByState.addEventListener("click", () => {
-    const SortedTodos = SortTodos(Todos, "state");
-    renderTodos(SortedTodos);
+    SortFunction.dataset.sortDirection = (SortFunction.dataset.sortFunction === "state" ? toggleValue(SortFunction.dataset.sortDirection, "up", "down") : "down");
+    SortFunction.dataset.sortFunction = "state";
+    renderTodos(Todos);
   });
 
   const SortByDate = document.getElementById("sort-date");
   SortByDate.addEventListener("click", () => {
-    const SortedTodos = SortTodos(Todos, "date");
-    renderTodos(SortedTodos);
+    SortFunction.dataset.sortDirection = (SortFunction.dataset.sortFunction === "date" ? toggleValue(SortFunction.dataset.sortDirection, "up", "down") : "down");
+    SortFunction.dataset.sortFunction = "date";
+    renderTodos(Todos);
   });
 
   const FilterByDone = document.getElementById("filter-done");
   FilterByDone.addEventListener("click", () => {
-    if(parseInt(FilterByDone.dataset.filtered,10) === 0){
-      FilterByDone.dataset.filtered = 1;
-      const FilteredTodos = FilterTodos(Todos, "state", "erledigt");
-      renderTodos(FilteredTodos);
-    }
-    else{
-      FilterByDone.dataset.filtered = 0;
-      renderTodos(Todos);
-    }
+    FilterFunction.dataset.filterFunction = "state";
+    FilterFunction.dataset.filterString = toggleValue(FilterFunction.dataset.filterString, "none", "erledigt");
+    renderTodos(Todos);
   });
 
   renderTodos(Todos);
