@@ -17,12 +17,19 @@ body {
   font-family: Roboto, sans-serif;
   background: var(--background);
   color: var(--color);
+  margin-left: 10vw;
+  margin-right: 10vw;
   display:flex;
   flex-direction: column;
 }
+
 h1 {
   font-size: 20px;
   border-bottom: 1px solid #000;
+}
+
+button:hover{
+  background-color: #ffbf00bd; /* Green */
 }
 
 button {
@@ -38,6 +45,13 @@ button {
   cursor: pointer;
 }
 
+.buttonClicked{
+  background-color: #ff7300; /* Green */
+}
+
+.buttonClicked:hover{
+  background-color: #ff7300be; /* Green */
+}
 
 
 .mainButtons{
@@ -52,14 +66,6 @@ button {
   display:flex;
   justify-content:space-between;
   margin-bottom: 1rem;
-}
-
-.listSort{
-  justify-content:start
-}
-
-.listFilter{
-  justify-content:end
 }
 
 .todoList{
@@ -79,28 +85,36 @@ button {
   border-bottom: 1px solid #000;
 }
 
+.edit{
+  justify-self: end;
+}
+
 footer{
   flex: 0 0 5%;
   margin-bottom: 1rem;
 }
 
 #overlay {
-  position: fixed; /* Sit on top of the page content */
-  display: none; /* Hidden by default */
-  width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--background); /* Black background with opacity*/
-  /*cursor: pointer; /* Add a pointer on hover */
+  background-color: var(--background);
 }
 
 
 #overlay-content{
-  margin-right: 20vw;
-  margin-left: 20vw;
+  margin-right: auto;
+  margin-left: auto;
+  
+  margin-top:10vh;
+  border: black solid;
+  padding: 3%;
+  max-width: 1000px;
 }
 
 #form-content {

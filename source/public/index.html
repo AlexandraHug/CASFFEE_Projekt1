@@ -5,7 +5,7 @@
   <title>ToDo App</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js" integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
 
-  <script src="scripts/index.js" type="module"></script>
+  <script src="scripts/Controller/todos-controller.js" type="module"></script>
 
   <link rel="stylesheet" href="styles/index.css">
 </head>
@@ -20,14 +20,12 @@
   </div>
   <div class="listManipulation">
     <div class="listSort" data-sort-function = "none" data-sort-direction="up">    
-      <button id="sort-date" type="button">Stichtag</button>
-      <button id="sort-description" type="button">Beschreibung</button>
-      <button id="sort-priority" type="button">Priorität</button>
-      <button id="sort-state" type="button">Status</button>
+      <!--Button render-->
     </div>
     <div class="listFilter" data-filter-function = "none" data-filter-string = "none">
-      <button id="filter-done" type="button">Nach Erledigt filtern</button>
+      <!--Button render-->
     </div>
+      
   </div>
 
   <main>
@@ -48,7 +46,7 @@
       </div>
     </div>
     <lu id="Todos" class="todoList">
-      //Todo Einträge
+      <!--Todo Einträge-->
     </lu>
 
     <div id="overlay">
