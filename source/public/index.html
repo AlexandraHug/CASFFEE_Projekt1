@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>ToDo App</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js" integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js" integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>-->
+
+  <script src="../libs/handlebars-v4.0.5.js" defer></script>
+  <script src="../js/utils/handlebars-helpers.js" defer></script>
 
   <script src="scripts/Controller/todos-controller.js" type="module"></script>
 
@@ -19,17 +22,17 @@
     <button id="theme-button" type="button">Theme</button>
   </div>
   <div class="listManipulation">
-    <div class="listSort" data-sort-function = "none" data-sort-direction="up">    
+    <div class="listSort" data-sort-function = "" data-sort-direction="up">    
       <!--Button render-->
     </div>
-    <div class="listFilter" data-filter-function = "none" data-filter-string = "none">
+    <div class="listFilter" data-filter-function = "" data-filter-string = "">
       <!--Button render-->
     </div>
       
   </div>
 
   <main>
-    <div class = "todoList">
+    <!-- <div class = "todoList">
       <div class = "todo">
         <h2 class = "duedate">
           Stichtag
@@ -44,10 +47,37 @@
           Status
         </h2>
       </div>
-    </div>
-    <lu id="Todos" class="todoList">
-      <!--Todo Einträge-->
-    </lu>
+    </div> -->
+
+    <script id="todos-template" type="text/x-handlebars-template">
+      <table class="table table-striped">
+        <caption>
+          Todo Liste:
+        </caption>
+        <thead>
+        <tr>
+          <th>Stichtag</th>
+          <th>Beschreibung</th>
+          <th>Priorität</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each todos}}
+          <tr>
+            <td>{{formatDate duedate}}</td>
+            <td>{{description}}</td>
+            <td>{{priority}}</td>
+            <td>{{state}}</td>
+            <td>
+              <button data-todo-id="{{_id}}" class="edit">Editieren</button>
+            </td>
+          </tr>
+        {{/each}}
+        </tbody>
+      </table>
+    </script>
+
 
     <div id="overlay">
       <div id="overlay-content">

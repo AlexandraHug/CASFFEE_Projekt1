@@ -3,6 +3,7 @@ import SortTodos  from '../Services/sort-todos.js';
 import findTodo  from '../Services/find-todo.js';
 import findTodoIndex  from '../Services/find-todo-index.js';
 import toggleValue  from '../Services/toggle-string.js';
+import {todoService} from '../Services/todo-service.js'
 
 const TodosFirstList = [
   {id: 1, duedate: "2027-05-08", description: 'putzen', priority: 1, state: "erledigt"},
@@ -11,6 +12,8 @@ const TodosFirstList = [
   {id: 4, duedate: "2027-05-11", description: 'Müll', priority: 2, state: "erledigt"},
   {id: 5, duedate: "2027-05-12", description: 'bla', priority: 2, state: "erledigt"},
 ];
+
+const todosRenderer = Handlebars.compile(document.querySelector("#todos-template").innerHTML);
 
 const themeButton = document.getElementById("theme-button");
 themeButton.addEventListener("click", () => {
@@ -39,15 +42,7 @@ function initApp () {
   localStorage.setItem('Todos', JSON.stringify(Todos));
 
   function createTodosHTML(list) {
-    const SortFunctionForHtml = document.querySelector(".listSort");
-    const Sortkey = SortFunctionForHtml.dataset.sortFunction;
-    const direction = SortFunctionForHtml.dataset.sortDirection;
-    const SortedList = SortTodos(list, Sortkey, direction);
-    const FilterFunctionForHtml = document.querySelector(".listFilter");
-    const Filterkey =  FilterFunctionForHtml.dataset.filterFunction;
-    const filterby = FilterFunctionForHtml.dataset.filterString;
-    const FilteredList = FilterTodos(SortedList, Filterkey, filterby);
-    return FilteredList.map(Todo =>
+    return list.map(Todo =>
       `<li class = "todo">
           <p class = "duedate">
           ${String(new Date(Todo.duedate).getUTCDate()).padStart(2,'0')}.${String(new Date(Todo.duedate).getMonth()+1).padStart(2,'0')}.${new Date(Todo.duedate).getUTCFullYear()}
@@ -81,7 +76,7 @@ function initApp () {
 
   function getButtonPressed(PressedString){
     let ButtonPressedClass;
-    if(SortFunction.dataset.sortFunction === PressedString || (FilterFunction.dataset.filterFunction === PressedString && !(FilterFunction.dataset.filterString === "none"))){
+    if(SortFunction.dataset.sortFunction === PressedString || (FilterFunction.dataset.filterFunction === PressedString && !(FilterFunction.dataset.filterString === ""))){
       ButtonPressedClass = "class = buttonClicked"
     }
     else{
@@ -97,7 +92,7 @@ function initApp () {
       <button id="sort-description" ${getButtonPressed("Beschreibung")} data-sort-key = "Beschreibung" type="button">Beschreibung ${getArrow("Beschreibung")}</button>
       <button id="sort-priority" ${getButtonPressed("Priorität")} data-sort-key = "Priorität" type="button">Priorität ${getArrow("Priorität")}</button>
       <button id="sort-state" ${getButtonPressed("Status")} data-sort-key = "Status" type="button">Status ${getArrow("Status")}</button>
-      <button id="sort-none" data-sort-key = "none" type="button">Sortierung entfernen</button>
+      <button id="sort-none" data-sort-key = "" type="button">Sortierung entfernen</button>
     `
   }
 
@@ -108,8 +103,14 @@ function initApp () {
     `
   }
 
-  function renderTodos(TodosList) {
-    todosDivElement.innerHTML = createTodosHTML(TodosList);
+  async function renderTodos() {
+    const SortFunctionForHtml = document.querySelector(".listSort");
+    const sortKey = SortFunctionForHtml.dataset.sortFunction;
+    const {sortDirection} = SortFunctionForHtml.dataset;
+    const FilterFunctionForHtml = document.querySelector(".listFilter");
+    const filterKey =  FilterFunctionForHtml.dataset.filterFunction;
+    const filterBy = FilterFunctionForHtml.dataset.filterString;
+    todosDivElement.innerHTML = todosRenderer({todolist: await todoService.getTodos(sortKey, sortDirection, filterKey, filterBy)});
   }
 
   function renderListSort() {
@@ -213,19 +214,19 @@ function initApp () {
       SortFunction.dataset.sortDirection = (SortFunction.dataset.sortFunction === sortTodoKey ? toggleValue(SortFunction.dataset.sortDirection, "up", "down") : "down");
       SortFunction.dataset.sortFunction = sortTodoKey;
       renderListSort();
-      renderTodos(Todos);
+      renderTodos();
     }
     if(filterTodoKey){
-      FilterFunction.dataset.filterString = (FilterFunction.dataset.filterFunction === filterTodoKey ? toggleValue(FilterFunction.dataset.filterString, "none", event.target.dataset.filterWord) : event.target.dataset.filterWord);
+      FilterFunction.dataset.filterString = (FilterFunction.dataset.filterFunction === filterTodoKey ? toggleValue(FilterFunction.dataset.filterString, "", event.target.dataset.filterWord) : event.target.dataset.filterWord);
       FilterFunction.dataset.filterFunction = filterTodoKey;
       renderListFilter();
-      renderTodos(Todos);
+      renderTodos();
     }
 
   }
 
   const form = document.getElementById("form");
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async event => {
     event.preventDefault();
     const overlayType = document.querySelector(".overlay-send");
     const description = document.getElementById("description");
@@ -236,6 +237,7 @@ function initApp () {
     const status = (state===false ? "offen": "erledigt");
     const input = {id: arayId, duedate: duedate.value, description: description.value, priority: importance.value, state: status};
     if(parseInt(overlayType.dataset.overlayId,10) === 0){
+      await todoService.createTodo(duedate.value, description.value, importance.value, status);
       Todos.push(input);
       localStorage.setItem('Todos',JSON.stringify(Todos));
       SortFunction.dataset.sortFunction = "id";
@@ -249,12 +251,12 @@ function initApp () {
 
     }
     off()
-    renderTodos(Todos);
+    renderTodos();
   });  
 
   renderListSort();
   renderListFilter();
-  renderTodos(Todos);
+  renderTodos();
   todosDivElement.addEventListener("click", bubbledClickEventHandler);
   SortFunction.addEventListener("click", bubbledClickEventHandler);
   FilterFunction.addEventListener("click",bubbledClickEventHandler);
