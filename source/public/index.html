@@ -34,16 +34,16 @@
     <div class = "todoList">
       <div class = "todo">
         <h2 class = "duedate">
-          Stichtag
+          duedate
         </h2>
         <h2 class = "description">
-          Beschreibung
+          description
         </h2>
         <h2 class = "priority">
-          Priorität
+          priority
         </h2>
         <h2 class = "state">
-          Status
+          state
         </h2>
       </div>
     </div>
@@ -52,16 +52,16 @@
         {{#each todos}}
         <li class = "todo">
           <p class = "duedate">
-            {{formatDate Stichtag}}
+            {{formatDate duedate}}
           </p>
           <p class = "description">
-            {{Beschreibung}}
+            {{description}}
           </p>
           <p class = "priority">
-            {{{repeatText '&#8623;' Priorität}}}
+            {{{repeatText '&#8623;' priority}}}
           </p>
           <p class = "state">
-            {{Status}}
+            {{state}}
           </p>
           <p class = "edit">
             <button data-todo-id="{{_id}}">Editieren</button>
@@ -76,6 +76,35 @@
         <h1>Todo editieren </h1>
         <form id="form" action="./index.html" action="POST">   
           <div id="form-content"></div>
+            <script id="overlay-template" type="text/x-handlebars-template">
+              <label for="description">description</label>
+              <textarea id="description" name="description" required>{{description}}</textarea>
+        
+              <br />
+        
+              <label for="importance">priority</label>
+              <select name="importance" id="importance" value={{priority}} required>
+                <option value="">Bitte wählen sie eine priority aus</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+        
+              <br />
+        
+              <label for="duedate">duedate</label>
+              <input id="duedate" type="date" name="duedate" value = {{duedate}} required/>
+        
+              <br />
+        
+              <div id="state-checkbox">
+                <input id="state" type="checkbox" name="state" value="done">
+                <label for="state">Erledigt</label>
+              </div> 
+            </script>
+
           <div class="Overlay-Buttons">
             <button class="overlay-send" data-overlay-id = "create" type="submit">Send</button>  
             <button id="overlay-close" type="button">Close</button> 

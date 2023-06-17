@@ -17,7 +17,7 @@ export class TodoStore {
     }
 
     async update(id, duedate, description, priority, state) {
-        await this.db.update({_id: id}, {$set: {"Stichtag": duedate,"Beschreibung": description,"Priorität": priority ,"Status": state}});
+        await this.db.update({_id: id}, {$set: {"duedate": duedate,"description": description,"priority": priority ,"state": state}});
         return this.get(id);
     }
 

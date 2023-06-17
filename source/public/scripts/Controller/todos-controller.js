@@ -7,6 +7,10 @@ const todosContainer = document.querySelector(".todoElements");
 // eslint-disable-next-line no-undef
 const todosRenderer = Handlebars.compile(document.querySelector("#todos-template").innerHTML);
 
+const overlayContainer = document.querySelector("#form-content");
+// eslint-disable-next-line no-undef
+const overlayRenderer = Handlebars.compile(document.querySelector("#overlay-template").innerHTML);
+
 const themeButton = document.getElementById("theme-button");
 themeButton.addEventListener("click", () => {
   document.body.classList.toggle("dark-theme");
@@ -15,7 +19,7 @@ themeButton.addEventListener("click", () => {
 function on() {
   document.getElementById("overlay").style.display = "block";
 }
-
+ 
 function off() {
   document.getElementById("overlay").style.display = "none";
 }
@@ -52,18 +56,18 @@ function initApp () {
 
   function createListSortHTML(){
     return `  
-      <button id="sort-date" ${getButtonPressed("Stichtag")} data-sort-key = "Stichtag" type="button">Stichtag ${getArrow("Stichtag")}</button>
-      <button id="sort-description" ${getButtonPressed("Beschreibung")} data-sort-key = "Beschreibung" type="button">Beschreibung ${getArrow("Beschreibung")}</button>
-      <button id="sort-priority" ${getButtonPressed("Priorität")} data-sort-key = "Priorität" type="button">Priorität ${getArrow("Priorität")}</button>
-      <button id="sort-state" ${getButtonPressed("Status")} data-sort-key = "Status" type="button">Status ${getArrow("Status")}</button>
+      <button id="sort-date" ${getButtonPressed("duedate")} data-sort-key = "duedate" type="button">Stichtag ${getArrow("duedate")}</button>
+      <button id="sort-description" ${getButtonPressed("description")} data-sort-key = "description" type="button">Beschreibung ${getArrow("description")}</button>
+      <button id="sort-priority" ${getButtonPressed("priority")} data-sort-key = "priority" type="button">Priorität ${getArrow("priority")}</button>
+      <button id="sort-state" ${getButtonPressed("state")} data-sort-key = "state" type="button">Status ${getArrow("state")}</button>
       <button id="sort-none" data-sort-key = "none" type="button">Sortierung entfernen</button>
     `
   }
 
   function createListFilterHTML(){
     return `
-      <button id="filter-done" ${getButtonPressed("erledigt")} data-filter-key = "Status" data-filter-word = "erledigt" type="button">Nach Erledigt filtern</button>
-      <button id="filter-open" ${getButtonPressed("offen")} data-filter-key = "Status" data-filter-word = "offen" type="button">Nach Offen filtern</button>
+      <button id="filter-done" ${getButtonPressed("erledigt")} data-filter-key = "state" data-filter-word = "erledigt" type="button">Nach Erledigt filtern</button>
+      <button id="filter-open" ${getButtonPressed("offen")} data-filter-key = "state" data-filter-word = "offen" type="button">Nach Offen filtern</button>
     `
   }
 
@@ -90,36 +94,7 @@ function initApp () {
   createTodo.addEventListener("click", () => {
     const overlayType = document.querySelector(".overlay-send");
     overlayType.dataset.overlayId = 0;
-    const FormContent = document.getElementById("form-content");
-    const content = `
-    <label for="description">Beschreibung</label>
-    <textarea id="description" name="description" required></textarea>
-
-    <br />
-
-    <label for="importance">Priorität</label>
-    <select name="importance" id="importance" required>
-      <option value="">Bitte wählen sie eine Priorität aus</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>
-
-    <br />
-
-    <label for="duedate">Stichtag</label>
-    <input id="duedate" type="date" name="duedate" required/>
-
-    <br />
-
-    <div id="state-checkbox">
-      <input id="state" type="checkbox" name="state" value="done">
-      <label for="state">Erledigt</label>
-    </div> 
-    `;
-    FormContent.innerHTML = content;
+    overlayContainer.innerHTML = overlayRenderer();
     on()
   });
 
@@ -128,43 +103,14 @@ function initApp () {
       const overlayType = document.querySelector(".overlay-send");
       // eslint-disable-next-line no-underscore-dangle
       overlayType.dataset.overlayId = Todo._id;
-      const FormContent = document.getElementById("form-content");
-      const content = `
-      <label for="description">Beschreibung</label>
-      <textarea id="description" name="description" required>${String(Todo.Beschreibung)}</textarea>
-
-      <br />
-
-      <label for="importance">Priorität</label>
-      <select name="importance" id="importance" value=${Todo.Priorität} required>
-        <option value="">Bitte wählen sie eine Priorität aus</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
-
-      <br />
-
-      <label for="duedate">Stichtag</label>
-      <input id="duedate" type="date" name="duedate" value = ${String(Todo.Stichtag)} required/>
-
-      <br />
-
-      <div id="state-checkbox">
-        <input id="state" type="checkbox" name="state" value="done">
-        <label for="state">Erledigt</label>
-      </div> 
-      `;
-      FormContent.innerHTML = content;
+      overlayContainer.innerHTML = overlayRenderer(Todo);
       const select = document.querySelector('#importance');
       const options = Array.from(select.options);
-      const optionToSelect = options.find(item => item.text === String(Todo.Priorität));
+      const optionToSelect = options.find(item => item.text === String(Todo.priority));
       optionToSelect.selected = true;
-      const status = Todo.Status==="erledigt";
+      const stateBox = Todo.state==="erledigt";
       const state = document.querySelector('#state');
-      state.checked = status;
+      state.checked = stateBox;
       on(); 
   }
 
@@ -198,16 +144,16 @@ function initApp () {
     const description = document.getElementById("description");
     const importance = document.getElementById("importance");
     const duedate = document.getElementById("duedate");
-    const state = document.getElementById("state").checked;
-    const status = (state===false ? "offen": "erledigt");
+    const statebox = document.getElementById("state").checked;
+    const state = (statebox===false ? "offen": "erledigt");
     if(parseInt(overlayType.dataset.overlayId,10) === 0){
-      await todoService.createTodo(duedate.value, description.value, importance.value, status);
+      await todoService.createTodo(duedate.value, description.value, importance.value, state);
       SortFunction.dataset.sortFunction = "none";
       SortFunction.dataset.sortDirection = "up";
       FilterFunction.dataset.filterFunction = "none";
     }
     else{
-      await todoService.changeTodo(overlayType.dataset.overlayId, duedate.value, description.value, importance.value, status);
+      await todoService.changeTodo(overlayType.dataset.overlayId, duedate.value, description.value, importance.value, state);
     }
     off()
     renderTodos();
