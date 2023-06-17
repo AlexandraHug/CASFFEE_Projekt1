@@ -26,7 +26,7 @@ export class TodoStore {
         const sortOption = {};
         if (sortKey === 'none')
             // eslint-disable-next-line no-underscore-dangle
-            sortOption._id = -1
+            sortOption.addDate = -1;
         else
             sortOption[sortKey] = direction;
 

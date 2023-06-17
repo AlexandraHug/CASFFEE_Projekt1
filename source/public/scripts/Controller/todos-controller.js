@@ -1,19 +1,10 @@
-import findTodo  from '../Services/find-todo.js';
-import findTodoIndex  from '../Services/find-todo-index.js';
 import toggleValue  from '../Services/toggle-string.js';
 import {todoService} from '../Services/todo-service.js';
 
-/*
-const TodosFirstList = [
-  {_id: 1, duedate: "2027-05-08", description: 'putzen', priority: 1, state: "erledigt"},
-  {_id: 2, duedate: "2027-05-09", description: 'aufräumen', priority: 4, state: "erledigt"},
-  {_id: 3, duedate: "2027-05-10", description: 'waschen', priority: 3, state: "offen"},
-  {_id: 4, duedate: "2027-05-11", description: 'Müll', priority: 2, state: "erledigt"},
-  {_id: 5, duedate: "2027-05-12", description: 'bla', priority: 2, state: "erledigt"},
-];
-*/
+
 
 const todosContainer = document.querySelector(".todoElements");
+// eslint-disable-next-line no-undef
 const todosRenderer = Handlebars.compile(document.querySelector("#todos-template").innerHTML);
 
 const themeButton = document.getElementById("theme-button");
@@ -35,13 +26,6 @@ OverlayClose.addEventListener("click", () => {off();})
 function initApp () {
   const FilterFunction = document.querySelector(".listFilter");
   const SortFunction = document.querySelector(".listSort");
-  
-  /*
-  let Todos = JSON.parse(localStorage.getItem('Todos') || "[]");
-  if (Todos.length === 0)
-    {Todos = TodosFirstList;}
-  localStorage.setItem('Todos', JSON.stringify(Todos));
-  */
 
   function getArrow(sortString){
     let SortSign;
@@ -142,6 +126,7 @@ function initApp () {
   async function OpenEditDialog(buttonForTodoId){
       const Todo = await todoService.getTodo(buttonForTodoId);
       const overlayType = document.querySelector(".overlay-send");
+      // eslint-disable-next-line no-underscore-dangle
       overlayType.dataset.overlayId = Todo._id;
       const FormContent = document.getElementById("form-content");
       const content = `
@@ -214,23 +199,15 @@ function initApp () {
     const importance = document.getElementById("importance");
     const duedate = document.getElementById("duedate");
     const state = document.getElementById("state").checked;
-    // const arayId = (parseInt(overlayType.dataset.overlayId,10) === 0 ? Todos.length + 1 : parseInt(overlayType.dataset.overlayId,10));
     const status = (state===false ? "offen": "erledigt");
-    // const input = {id: arayId, duedate: duedate.value, description: description.value, priority: importance.value, state: status};
     if(parseInt(overlayType.dataset.overlayId,10) === 0){
       await todoService.createTodo(duedate.value, description.value, importance.value, status);
-      // Todos.push(input);
-      // localStorage.setItem('Todos',JSON.stringify(Todos));
       SortFunction.dataset.sortFunction = "none";
       SortFunction.dataset.sortDirection = "up";
       FilterFunction.dataset.filterFunction = "none";
     }
     else{
       await todoService.changeTodo(overlayType.dataset.overlayId, duedate.value, description.value, importance.value, status);
-      // const TodoIndex = findTodoIndex(overlayType.dataset.overlayId, Todos)
-      // Todos[TodoIndex] = input;
-      // localStorage.setItem('Todos',JSON.stringify(Todos));
-
     }
     off()
     renderTodos();

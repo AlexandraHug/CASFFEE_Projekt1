@@ -1,9 +1,3 @@
-{"Stichtag":"2023-06-13","Beschreibung":"sd<f","Priorität":"4","Status":"offen","_id":"6RGay0acW4CwUQwG"}
-{"Stichtag":"2023-06-11","Beschreibung":"zwei","Priorität":"4","Status":"offen","_id":"7q5IWDiCkfNaip9B"}
-{"Stichtag":"2023-06-27","Beschreibung":"sdf","Priorität":"3","Status":"offen","_id":"CBogDOiEkmlSSbNf"}
-{"Stichtag":"2023-06-22","Beschreibung":"sdf","Priorität":"4","Status":"offen","_id":"N88HL5yHC77StuGG"}
-{"Stichtag":"2023-06-07","Beschreibung":"blaubla","Priorität":"3","Status":"offen","_id":"UnYKKmIdfFo5zJ9D"}
-{"Stichtag":"2023-06-07","Beschreibung":"blaubla","Priorität":"5","Status":"offen","_id":"UnYKKmIdfFo5zJ9D"}
-{"Stichtag":"2023-06-27","Beschreibung":"besserer Text","Priorität":"3","Status":"offen","_id":"CBogDOiEkmlSSbNf"}
-{"Stichtag":"2023-06-22","Beschreibung":"sdf","Priorität":"4","Status":"erledigt","_id":"N88HL5yHC77StuGG"}
-{"Stichtag":"2023-06-21","Beschreibung":"zwei","Priorität":"4","Status":"offen","_id":"7q5IWDiCkfNaip9B"}
+{"Stichtag":"2023-06-21","Beschreibung":"eins","Priorität":"4","Status":"offen","addDate":{"$$date":1687009155309},"_id":"WDEdPJ4IPNoLkMFo"}
+{"Stichtag":"2023-06-11","Beschreibung":"zwei","Priorität":"2","Status":"offen","addDate":{"$$date":1687009163672},"_id":"I6oXwimbPBhAtfjj"}
+{"Stichtag":"2023-07-14","Beschreibung":"drei","Priorität":"3","Status":"offen","addDate":{"$$date":1687009176099},"_id":"ZVXPN72HoMWGj9l2"}

@@ -4,5 +4,6 @@ export default class Todo {
         this.Beschreibung = description;
         this.Priorität = priority;
         this.Status = state;
+        this.addDate = new Date();
     }
 }
