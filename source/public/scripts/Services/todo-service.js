@@ -17,8 +17,8 @@ class TodoService {
     }
 
     // eslint-disable-next-line class-methods-use-this
-    async changeTodo(id, duedate, description, priority , state) {
-        return httpService.ajax("POST", `/todos/${id}`, {duedate, description, priority , state});
+    async changeTodo(_id, duedate, description, priority , state) {
+        return httpService.ajax("POST", `/todos/${_id}`, {duedate, description, priority , state});
     }
 }
 

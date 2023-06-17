@@ -13,7 +13,7 @@ export class TodoStore {
     }
 
     async get(id) {
-        return this.db.findOne({_id: id});
+        return this.db.findOne({_id: id}).exec();
     }
 
     async update(id, duedate, description, priority, state) {
@@ -24,13 +24,13 @@ export class TodoStore {
     async all(sortKey, sortDirection, filterKey, filterBy) {
         const direction = (sortDirection === "up" ? -1 : 1);
         const sortOption = {};
-        if (sortKey === '')
+        if (sortKey === 'none')
             // eslint-disable-next-line no-underscore-dangle
             sortOption._id = -1
         else
             sortOption[sortKey] = direction;
 
-        if(filterKey === ''){
+        if(filterBy === 'none'){
             return this.db.find({}).sort(sortOption).exec();
         }
         const filterOptions = {};

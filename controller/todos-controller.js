@@ -15,7 +15,7 @@ export class TodosController {
     };
 
     changeTodo = async (req, res) => {
-        res.json(await todoStore.change(req.params.id)); // TODO should return 402 if not ok
+        res.json(await todoStore.update(req.params.id, req.body.duedate, req.body.description, req.body.priority, req.body.state )); // TODO should return 402 if not ok
     };
 }
 
