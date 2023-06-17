@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>ToDo App</title>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js" integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js" integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
 
-  <script src="../libs/handlebars-v4.0.5.js" defer></script>
-  <script src="../js/utils/handlebars-helpers.js" defer></script>
+  <!--<script src="../libs/handlebars-v4.0.5.js" defer></script> -->
+  <script src="./scripts/utils/handlebars-helpers.js" defer></script>
 
   <script src="scripts/Controller/todos-controller.js" type="module"></script>
 
@@ -31,8 +31,8 @@
       
   </div>
 
-  <main>
-    <!-- <div class = "todoList">
+  <div>
+    <div class = "todoList">
       <div class = "todo">
         <h2 class = "duedate">
           Stichtag
@@ -47,8 +47,31 @@
           Status
         </h2>
       </div>
-    </div> -->
-
+    </div>
+    <div class = "todoElements"></div>
+      <script id="todos-template" type="text/x-handlebars-template">
+        {{#each todos}}
+        <li class = "todo">
+          <p class = "duedate">
+            {{formatDate Stichtag}}
+          </p>
+          <p class = "description">
+            {{Beschreibung}}
+          </p>
+          <p class = "priority">
+            {{{repeatText '&#8623;' Priorität}}}
+          </p>
+          <p class = "state">
+            {{Status}}
+          </p>
+          <p class = "edit">
+            <button data-todo-id="{{_id}}">Editieren</button>
+          </p>
+        </li>
+        {{/each}}
+      </script>
+    </div>
+<!--
     <script id="todos-template" type="text/x-handlebars-template">
       <table class="table table-striped">
         <caption>
@@ -65,7 +88,7 @@
         <tbody>
         {{#each todos}}
           <tr>
-            <td>{{formatDate duedate}}</td>
+            <td>{{duedate}}</td>
             <td>{{description}}</td>
             <td>{{priority}}</td>
             <td>{{state}}</td>
@@ -77,7 +100,7 @@
         </tbody>
       </table>
     </script>
-
+-->
 
     <div id="overlay">
       <div id="overlay-content">

@@ -17,15 +17,25 @@ export class TodoStore {
     }
 
     async update(id, duedate, description, priority, state) {
-        await this.db.update({_id: id}, {$set: {"duedate": duedate,"description": description,"priority": priority ,"state": state}});
+        await this.db.update({_id: id}, {$set: {"Stichtag": duedate,"Beschreibung": description,"Priorität": priority ,"Status": state}});
         return this.get(id);
     }
 
     async all(sortKey, sortDirection, filterKey, filterBy) {
         const direction = (sortDirection === "up" ? -1 : 1);
-        if(filterKey === '')
-            return this.db.find({}).sort(Object.assign(sortKey, {direction})).exec();
-        return this.db.find(Object.assign(filterKey, {filterBy})).sort(Object.assign(sortKey, {direction})).exec();
+        const sortOption = {};
+        if (sortKey === '')
+            // eslint-disable-next-line no-underscore-dangle
+            sortOption._id = -1
+        else
+            sortOption[sortKey] = direction;
+
+        if(filterKey === ''){
+            return this.db.find({}).sort(sortOption).exec();
+        }
+        const filterOptions = {};
+        filterOptions[filterKey] = filterBy;
+        return this.db.find(filterOptions).sort(sortOption).exec();
     }
 }
 

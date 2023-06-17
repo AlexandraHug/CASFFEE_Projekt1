@@ -1,18 +1,17 @@
-import FilterTodos  from '../Services/filter-todos.js';
-import SortTodos  from '../Services/sort-todos.js';
 import findTodo  from '../Services/find-todo.js';
 import findTodoIndex  from '../Services/find-todo-index.js';
 import toggleValue  from '../Services/toggle-string.js';
 import {todoService} from '../Services/todo-service.js'
 
 const TodosFirstList = [
-  {id: 1, duedate: "2027-05-08", description: 'putzen', priority: 1, state: "erledigt"},
-  {id: 2, duedate: "2027-05-09", description: 'aufräumen', priority: 4, state: "erledigt"},
-  {id: 3, duedate: "2027-05-10", description: 'waschen', priority: 3, state: "offen"},
-  {id: 4, duedate: "2027-05-11", description: 'Müll', priority: 2, state: "erledigt"},
-  {id: 5, duedate: "2027-05-12", description: 'bla', priority: 2, state: "erledigt"},
+  {_id: 1, duedate: "2027-05-08", description: 'putzen', priority: 1, state: "erledigt"},
+  {_id: 2, duedate: "2027-05-09", description: 'aufräumen', priority: 4, state: "erledigt"},
+  {_id: 3, duedate: "2027-05-10", description: 'waschen', priority: 3, state: "offen"},
+  {_id: 4, duedate: "2027-05-11", description: 'Müll', priority: 2, state: "erledigt"},
+  {_id: 5, duedate: "2027-05-12", description: 'bla', priority: 2, state: "erledigt"},
 ];
 
+const todosContainer = document.querySelector(".todoElements");
 const todosRenderer = Handlebars.compile(document.querySelector("#todos-template").innerHTML);
 
 const themeButton = document.getElementById("theme-button");
@@ -32,7 +31,6 @@ const OverlayClose = document.getElementById("overlay-close");
 OverlayClose.addEventListener("click", () => {off();})
 
 function initApp () {
-  const todosDivElement = document.querySelector("#Todos");
   const FilterFunction = document.querySelector(".listFilter");
   const SortFunction = document.querySelector(".listSort");
   
@@ -41,7 +39,7 @@ function initApp () {
     {Todos = TodosFirstList;}
   localStorage.setItem('Todos', JSON.stringify(Todos));
 
-  function createTodosHTML(list) {
+  /* function createTodosHTML(list) {
     return list.map(Todo =>
       `<li class = "todo">
           <p class = "duedate">
@@ -61,7 +59,7 @@ function initApp () {
           </p>
         </li>`
         ).join('');
-  }
+  } */
 
   function getArrow(sortString){
     let SortSign;
@@ -98,8 +96,8 @@ function initApp () {
 
   function createListFilterHTML(){
     return `
-      <button id="filter-done" ${getButtonPressed("done")} data-filter-key = "done" data-filter-word = "erledigt" type="button">Nach Erledigt filtern</button>
-      <button id="filter-open" ${getButtonPressed("open")} data-filter-key = "open" data-filter-word = "offen" type="button">Nach Offen filtern</button>
+      <button id="filter-done" ${getButtonPressed("done")} data-filter-key = "Status" data-filter-word = "erledigt" type="button">Nach Erledigt filtern</button>
+      <button id="filter-open" ${getButtonPressed("open")} data-filter-key = "Status" data-filter-word = "offen" type="button">Nach Offen filtern</button>
     `
   }
 
@@ -110,7 +108,8 @@ function initApp () {
     const FilterFunctionForHtml = document.querySelector(".listFilter");
     const filterKey =  FilterFunctionForHtml.dataset.filterFunction;
     const filterBy = FilterFunctionForHtml.dataset.filterString;
-    todosDivElement.innerHTML = todosRenderer({todolist: await todoService.getTodos(sortKey, sortDirection, filterKey, filterBy)});
+    const todoElements = {todos: await todoService.getTodos(sortKey, sortDirection, filterKey, filterBy)};
+    todosContainer.innerHTML = todosRenderer(todoElements);
   }
 
   function renderListSort() {
@@ -240,9 +239,9 @@ function initApp () {
       await todoService.createTodo(duedate.value, description.value, importance.value, status);
       Todos.push(input);
       localStorage.setItem('Todos',JSON.stringify(Todos));
-      SortFunction.dataset.sortFunction = "id";
+      SortFunction.dataset.sortFunction = "_id";
       SortFunction.dataset.sortDirection = "up";
-      FilterFunction.dataset.filterFunction = "none";
+      FilterFunction.dataset.filterFunction = "";
     }
     else{
       const TodoIndex = findTodoIndex(overlayType.dataset.overlayId, Todos)
@@ -257,7 +256,7 @@ function initApp () {
   renderListSort();
   renderListFilter();
   renderTodos();
-  todosDivElement.addEventListener("click", bubbledClickEventHandler);
+  todosContainer.addEventListener("click", bubbledClickEventHandler);
   SortFunction.addEventListener("click", bubbledClickEventHandler);
   FilterFunction.addEventListener("click",bubbledClickEventHandler);
 }
