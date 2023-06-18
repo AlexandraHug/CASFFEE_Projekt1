@@ -1,7 +1,7 @@
-{"duedate":"2023-06-11","description":"zwei","priority":"2","state":"offen","addDate":{"$$date":1687009163672},"_id":"I6oXwimbPBhAtfjj"}
+{"duedate":"2023-06-11","description":"zwei","priority":"5","state":"offen","addDate":{"$$date":1687009163672},"_id":"I6oXwimbPBhAtfjj"}
 {"duedate":"2023-05-25","description":"vier","priority":"3","state":"erledigt","addDate":{"$$date":1687009477025},"_id":"PWlgQDRSmslEO4Yj"}
 {"duedate":"2023-06-21","description":"eins","priority":"4","state":"offen","addDate":{"$$date":1687009155309},"_id":"WDEdPJ4IPNoLkMFo"}
 {"duedate":"2023-07-14","description":"drei","priority":"3","state":"offen","addDate":{"$$date":1687009176099},"_id":"ZVXPN72HoMWGj9l2"}
 {"duedate":"2023-07-20","description":"blau","priority":"3","state":"erledigt","addDate":{"$$date":1687010811151},"_id":"dHKaDyLM6f6FstqT"}
 {"duedate":"2023-06-27","description":"jeeee","priority":"3","state":"erledigt","addDate":{"$$date":1687012291904},"_id":"qcUlANIWhhkMAq9k"}
-{"duedate":"2023-06-11","description":"zwei","priority":"5","state":"offen","addDate":{"$$date":1687009163672},"_id":"I6oXwimbPBhAtfjj"}
+{"duedate":"2023-07-14","description":"drei","priority":"3","state":"erledigt","addDate":{"$$date":1687009176099},"_id":"ZVXPN72HoMWGj9l2"}

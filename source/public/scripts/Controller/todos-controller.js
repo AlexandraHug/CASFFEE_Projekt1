@@ -44,7 +44,7 @@ function initApp () {
 
   function getButtonPressed(PressedString){
     let ButtonPressedClass;
-    if(SortFunction.dataset.sortFunction === PressedString || (FilterFunction.dataset.filterString === PressedString && !(FilterFunction.dataset.filterString === "none"))){
+    if(SortFunction.dataset.sortFunction === PressedString || (FilterFunction.dataset.filterString === PressedString && !(FilterFunction.dataset.filterFunction === "none"))){
       ButtonPressedClass = "class = buttonClicked"
     }
     else{
@@ -128,9 +128,9 @@ function initApp () {
       renderListSort();
       renderTodos();
     }
-    if(filterTodoKey){
-      FilterFunction.dataset.filterString = (FilterFunction.dataset.filterFunction === filterTodoKey ? toggleValue(FilterFunction.dataset.filterString, "none", event.target.dataset.filterWord) : event.target.dataset.filterWord);
-      FilterFunction.dataset.filterFunction = filterTodoKey;
+    if(filterTodoKey){   
+      FilterFunction.dataset.filterFunction = (FilterFunction.dataset.filterString === event.target.dataset.filterWord ? toggleValue(FilterFunction.dataset.filterFunction, "none", filterTodoKey) : filterTodoKey);
+      FilterFunction.dataset.filterString = event.target.dataset.filterWord;
       renderListFilter();
       renderTodos();
     }

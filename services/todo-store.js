@@ -30,7 +30,7 @@ export class TodoStore {
         else
             sortOption[sortKey] = direction;
 
-        if(filterBy === 'none'){
+        if(filterKey === 'none'){
             return this.db.find({}).sort(sortOption).exec();
         }
         const filterOptions = {};
