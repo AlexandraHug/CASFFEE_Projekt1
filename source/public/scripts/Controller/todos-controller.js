@@ -45,7 +45,7 @@ function initApp () {
   function getButtonPressed(PressedString){
     let ButtonPressedClass;
     if(SortFunction.dataset.sortFunction === PressedString || (FilterFunction.dataset.filterString === PressedString && !(FilterFunction.dataset.filterFunction === "none"))){
-      ButtonPressedClass = "class = buttonClicked"
+      ButtonPressedClass = "class = button-clicked"
     }
     else{
       ButtonPressedClass = "";
@@ -94,7 +94,7 @@ function initApp () {
   createTodo.addEventListener("click", () => {
     const overlayType = document.querySelector(".overlay-send");
     overlayType.dataset.overlayId = 0;
-    overlayContainer.innerHTML = overlayRenderer();
+    overlayContainer.innerHTML = overlayRenderer({priority:"", duedate:""});
     on()
   });
 
@@ -141,19 +141,20 @@ function initApp () {
   form.addEventListener("submit", async event => {
     event.preventDefault();
     const overlayType = document.querySelector(".overlay-send");
-    const description = document.getElementById("description");
+    const description = document.getElementById("description").value;
+    const descriptionUpperCase = description.charAt(0).toUpperCase() + description.slice(1);
     const importance = document.getElementById("importance");
     const duedate = document.getElementById("duedate");
     const statebox = document.getElementById("state").checked;
     const state = (statebox===false ? "offen": "erledigt");
     if(parseInt(overlayType.dataset.overlayId,10) === 0){
-      await todoService.createTodo(duedate.value, description.value, importance.value, state);
+      await todoService.createTodo(duedate.value, descriptionUpperCase, importance.value, state);
       SortFunction.dataset.sortFunction = "none";
       SortFunction.dataset.sortDirection = "up";
       FilterFunction.dataset.filterFunction = "none";
     }
     else{
-      await todoService.changeTodo(overlayType.dataset.overlayId, duedate.value, description.value, importance.value, state);
+      await todoService.changeTodo(overlayType.dataset.overlayId, duedate.value, descriptionUpperCase, importance.value, state);
     }
     off()
     renderTodos();

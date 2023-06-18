@@ -3,150 +3,146 @@
 }
 
 :root {
-  --background: white;
-  --color: #222;
+    --background: white;
+    --color: #222;
 }
 
 .dark-theme {
-  --background: #222;
-  --color: white;
+    --background: #222;
+    --color: white;
 }
 
-
 body {
-  font-family: Roboto, sans-serif;
-  background: var(--background);
-  color: var(--color);
-  margin-left: 10vw;
-  margin-right: 10vw;
-  display:flex;
-  flex-direction: column;
+    font-family: Roboto, sans-serif;
+    background: var(--background);
+    color: var(--color);
+    margin-left: 10vw;
+    margin-right: 10vw;
+    display: flex;
+    flex-direction: column;
 }
 
 h1 {
-  font-size: 20px;
-  border-bottom: 1px solid #000;
-}
-
-button:hover{
-  background-color: #ffbf00bd; /* Green */
+    font-size: 20px;
+    border-bottom: 1px solid #000;
 }
 
 button {
-  background-color: #FFBF00; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius:8px;
-  cursor: pointer;
+    background-color: #ffbf00; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
-.buttonClicked{
-  background-color: #ff7300; /* Green */
+button:hover {
+    background-color: #ffbf00bd; /* Green */
 }
 
-.buttonClicked:hover{
-  background-color: #ff7300be; /* Green */
+.button-clicked {
+    background-color: #ff7300; /* Green */
 }
 
-
-.mainButtons{
-  flex: 1 0 10%;
-  display: flex;
-  justify-content:space-between;
-  margin-bottom: 1rem;
+.button-clicked:hover {
+    background-color: #ff7300be; /* Green */
 }
 
-.listManipulation{
-  flex: 1 0 10%;
-  display:flex;
-  justify-content:space-between;
-  margin-bottom: 1rem;
+.main-buttons {
+    flex: 1 0 10%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
-.todoList{
-  flex: 1 0 10%;
-  display:flex;
-  justify-content: flex-start;
-  flex-direction:column;
-  margin-bottom: 1rem;
-  text-align:start;
+.list-manipulation {
+    flex: 1 0 10%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
-.todo{
-  display: grid;
-  grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
-  align-items: center;
-  padding: 1rem;
-  border-bottom: 1px solid #000;
+.todo-list {
+    flex: 1 0 10%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    text-align: start;
 }
 
-.edit{
-  justify-self: end;
+.todo {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #000;
 }
 
-footer{
-  flex: 0 0 5%;
-  margin-bottom: 1rem;
+.edit {
+    justify-self: end;
+}
+
+footer {
+    flex: 0 0 5%;
+    margin-bottom: 1rem;
 }
 
 #overlay {
-  position: fixed;
-  display: none;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--background);
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--background);
 }
 
-
-#overlay-content{
-  margin-right: auto;
-  margin-left: auto;
-  
-  margin-top:10vh;
-  border: black solid;
-  padding: 3%;
-  max-width: 1000px;
+#overlay-content {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10vh;
+    border: black solid;
+    padding: 3%;
+    max-width: 1000px;
 }
 
 #form-content {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 label {
-  flex: 0 0 20%;
+    flex: 0 0 20%;
 }
 
 textarea,
 input,
 select {
-  flex: 0 0 75%;
-  margin-bottom: 5px;
+    flex: 0 0 75%;
+    margin-bottom: 5px;
 }
 
-#state-checkbox{
-  flex: 0 0 100%;
-  margin-left: 20%;
+#state-checkbox {
+    flex: 0 0 100%;
+    margin-left: 20%;
 }
 
-input[type=checkbox]{
-  flex: 0 0 auto;
+input[type="checkbox"] {
+    flex: 0 0 auto;
 }
 
 textarea {
-  height: 150px;
+    height: 150px;
 }
 
-.Overlay-Buttons{
-  display:flex;
-  justify-content:space-between;
+.overlay-buttons {
+    display: flex;
+    justify-content: space-between;
 }

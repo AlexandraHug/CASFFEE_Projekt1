@@ -1,8 +1,7 @@
-Handlebars.registerHelper('formatDate', function (data) {
-    return new Date(data).toLocaleDateString('de-DE'); //ES6
-});
+/* eslint-disable no-undef */
+Handlebars.registerHelper('formatDate', (data) => 
+     new Date(data).toLocaleDateString('de-DE')
+);
 
-Handlebars.registerHelper('repeatText', function(text, n){
-    return text.repeat(n);
-})
+Handlebars.registerHelper('repeatText', (text, n)=> text.repeat(n))
 

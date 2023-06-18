@@ -16,11 +16,11 @@
 
   <h1>Todo App Alexandra Hug </h1>
 
-  <div class = "mainButtons">
+  <div class = "main-buttons">
     <button id="create-todo" type="button">Neues ToDo</button>
     <button id="theme-button" type="button">Theme</button>
   </div>
-  <div class="listManipulation">
+  <div class="list-manipulation">
     <div class="listSort" data-sort-function = "none" data-sort-direction="up">    
       <!--Button render-->
     </div>
@@ -31,19 +31,19 @@
   </div>
 
   <div>
-    <div class = "todoList">
+    <div class = "todo-list">
       <div class = "todo">
         <h2 class = "duedate">
-          duedate
+          Stichtag
         </h2>
         <h2 class = "description">
-          description
+          Beschreibung
         </h2>
         <h2 class = "priority">
-          priority
+          Priorität
         </h2>
         <h2 class = "state">
-          state
+          Status
         </h2>
       </div>
     </div>
@@ -83,7 +83,7 @@
               <br />
         
               <label for="importance">priority</label>
-              <select name="importance" id="importance" value={{priority}} required>
+              <select name="importance" id="importance" {{#if priority}} value={{priority}} {{/if}} required>
                 <option value="">Bitte wählen sie eine priority aus</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -95,7 +95,7 @@
               <br />
         
               <label for="duedate">duedate</label>
-              <input id="duedate" type="date" name="duedate" value = {{duedate}} required/>
+              <input id="duedate" type="date" name="duedate" {{#if duedate}} value = {{duedate}} {{/if}} required/>
         
               <br />
         
@@ -105,7 +105,7 @@
               </div> 
             </script>
 
-          <div class="Overlay-Buttons">
+          <div class="overlay-buttons">
             <button class="overlay-send" data-overlay-id = "create" type="submit">Send</button>  
             <button id="overlay-close" type="button">Close</button> 
           </div>
@@ -114,10 +114,8 @@
       </div>
     </div> <!--this is the input overlay-->
 
-  </main>
-
   <footer>
-    &copy Alexandra Hug  
+    &copy; Alexandra Hug  
   </footer>
 </body>
 </html>
