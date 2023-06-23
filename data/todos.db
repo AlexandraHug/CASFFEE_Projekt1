@@ -1,6 +1,13 @@
 {"duedate":"2023-06-20","description":"Küche putzen","priority":"2","state":"offen","addDate":{"$$date":1687094695703},"_id":"HTyu6vQm9Qwm2YdL"}
 {"duedate":"2023-07-15","description":"Lernen","priority":"5","state":"erledigt","addDate":{"$$date":1687094710096},"_id":"PdK7F9r6OJWXiiYT"}
 {"duedate":"2023-06-21","description":"Schule","priority":"5","state":"offen","addDate":{"$$date":1687095932967},"_id":"SQLEjF2TGzZqLLeh"}
-{"duedate":"2023-05-10","description":"Einkaufen","priority":"1","state":"offen","addDate":{"$$date":1687094723255},"_id":"uZlqq2KVjjSR6TKG"}
 {"duedate":"2023-06-22","description":"Tanzen","priority":"2","state":"offen","addDate":{"$$date":1687097891491},"_id":"W1H7J15C91bOowyE"}
 {"duedate":"2023-07-28","description":"Test","priority":"3","state":"offen","addDate":{"$$date":1687097902565},"_id":"pyM9LRQPKy6B7HDa"}
+{"duedate":"2023-05-10","description":"Einkaufen","priority":"1","state":"offen","addDate":{"$$date":1687094723255},"_id":"uZlqq2KVjjSR6TKG"}
+{"duedate":"2023-06-20","description":"Küche putzen","priority":"2","state":"erledigt","addDate":{"$$date":1687094695703},"_id":"HTyu6vQm9Qwm2YdL"}
+{"duedate":"2023-06-22","description":"Tanzen","priority":"4","state":"offen","addDate":{"$$date":1687097891491},"_id":"W1H7J15C91bOowyE"}
+{"duedate":"2023-06-21","description":"Schule","priority":"3","state":"offen","addDate":{"$$date":1687095932967},"_id":"SQLEjF2TGzZqLLeh"}
+{"duedate":"2023-06-21","description":"Schule","priority":"3","state":"erledigt","addDate":{"$$date":1687095932967},"_id":"SQLEjF2TGzZqLLeh"}
+{"duedate":"2023-06-22","description":"Tanzen","priority":"4","state":"erledigt","addDate":{"$$date":1687097891491},"_id":"W1H7J15C91bOowyE"}
+{"duedate":"2023-07-28","description":"Hausaufgaben","priority":"3","state":"offen","addDate":{"$$date":1687097902565},"_id":"pyM9LRQPKy6B7HDa"}
+{"duedate":"2023-07-18","description":"Hausaufgaben","priority":"3","state":"offen","addDate":{"$$date":1687097902565},"_id":"pyM9LRQPKy6B7HDa"}
